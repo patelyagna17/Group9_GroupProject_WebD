@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <!-- Bootstrap CSS -->
+    <!-- favicon added -->
+    <link rel="icon" type="image/x-icon" href="Web Design Assignment 5 Group 9/FinalAssig5/js">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="login_style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card my-5">
+                    <form class="card-body cardbody-color p-lg-5 needs-validation" id="registrationForm" method="POST" novalidate>
+                        <div class="text-center">
+                            <img src="images/logo.webp"
+                                class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3" width="200px"
+                                alt="profile">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="First Name" required>
+                            <div class="invalid-feedback">Please enter your first name.</div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="LastName" name="LastName" placeholder="Last Name" required>
+                            <div class="invalid-feedback">Please enter your last name.</div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="Email" name="Email" placeholder="User Email" required>
+                            <div class="invalid-feedback">Please enter your email.</div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="Setpassword" name="Setpassword" 
+                                placeholder="Set Password" 
+                                pattern="(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}" 
+                                title="Password must contain at least one special character, one number, and be at least 8 characters long." 
+                                required>
+                            <div class="invalid-feedback">Please enter a password.</div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" required>
+                            <div class="invalid-feedback">Please confirm your password.</div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-color px-5 mb-5 w-100">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Success Modal -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Success!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Registration successful! You will be redirected to the login page.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="login.html" class="btn btn-primary">Go to Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Bootstrap validation and modal trigger
+        (function () {
+            'use strict';
+
+            var forms = document.querySelectorAll('.needs-validation');
+
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault(); // Prevent form submission
+                        event.stopPropagation(); // Stop the event from propagating
+                    } else {
+                        event.preventDefault(); // Prevent default form submission
+                        var myModal = new bootstrap.Modal(document.getElementById("confirmationModal"));
+                        myModal.show();
+                    }
+                    form.classList.add('was-validated'); // Add validation class
+                }, false);
+            });
+        })();
+    </script>
+
+</body>
+</html>
