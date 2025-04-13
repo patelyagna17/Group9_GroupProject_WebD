@@ -3,6 +3,10 @@ const mongoose = require("mongoose")
 const cors = require("cors")
 const path = require("path")
 const cookieParser = require("cookie-parser")
+const userRoutes = require("./routes/userRoutes")
+const weatherRoutes = require("./routes/weatherRoutes")
+const adminRoutes = require("./routes/adminRoutes")
+const { errorHandler } = require("./middleware/errorMiddleware")
 require("dotenv").config()
 
 // Initialize express app
@@ -36,6 +40,10 @@ app.use((req, res, next) => {
   next()
 })
 
+// Routes
+app.use("/api/users", userRoutes)
+app.use("/api/weather", weatherRoutes)
+app.use("/api/admin", adminRoutes)
 
 // Test route
 app.get("/api/test", (req, res) => {
@@ -57,6 +65,8 @@ if (process.env.NODE_ENV === "production") {
   })
 }
 
+// Error handling middleware
+app.use(errorHandler)
 
 // Start server
 app.listen(PORT, () => {
